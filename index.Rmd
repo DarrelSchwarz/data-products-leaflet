@@ -1,0 +1,44 @@
+---
+title: "Project - R Markdown and Leaflet"
+author: "Darrel Schwarz"
+date: "11th August 2019"
+output: html_document
+---
+
+```{r echo=FALSE, message=FALSE }
+library(leaflet)
+
+points <- data.frame(
+    name=c("Melbourne Convention & Exibition Centre",
+           "Melbourne Aquarium",
+           "Australian Centre of the Moving Image",
+           "The Ian Potter Centre",
+           "National Gallery of Victoria",
+           "Melbourne Cricket Ground",
+           "Melbourne Park"),
+    href= c("<a href='https://en.wikipedia.org/wiki/Melbourne_Convention_and_Exhibition_Centre'>
+            wiki : Melbourne Convention & Exibition Centre</a>",
+            "<a href='https://en.wikipedia.org/wiki/Sea_Life_Melbourne_Aquarium'>
+            wiki : Melbourne Aquarium</a>",
+            "<a href='https://en.wikipedia.org/wiki/Australian_Centre_for_the_Moving_Image'>
+            wiki : Australian Centre of the Moving Image</a>",
+            "<a href='https://en.wikipedia.org/wiki/Ian_Potter_Centre'>
+            wiki : The Ian Potter Centre</a>",
+            "<a href='https://en.wikipedia.org/wiki/National_Gallery_of_Victoria'>
+            wiki : National Gallery of Victoria</a>",
+            "<a href='https://en.wikipedia.org/wiki/Melbourne_Cricket_Ground'>
+            wiki : Melbourne Cricket Ground</a>",
+            "<a href='https://en.wikipedia.org/wiki/Melbourne_Park'>
+            wiki : Melbourne Park</a>"),
+    lat = c(-37.826341,-37.820649,-37.817352,
+            -37.817798,-37.822700,-37.820000,
+            -37.822777),
+    lng = c(144.952918,144.958227,144.968701,
+            144.968714,144.969138,144.983333,
+            144.9800))
+
+points %>%
+    leaflet() %>%
+    addTiles() %>%
+    addMarkers(label=points$name, popup=points$href) 
+```
